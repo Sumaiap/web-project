@@ -1,1 +1,163 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <button class="nav-item active" onclick="showPage('dashboardPage', this)">
+        <span class="material-icons">dashboard</span>
+        Dashboard
+      </button>
+
+      <button class="nav-item" onclick="showPage('subjectsPage', this)">
+        <span class="material-icons">menu_book</span>
+        Subjects
+      </button>
+
+      <button class="nav-item" onclick="showPage('tasksPage', this)">
+        <span class="material-icons">assignment</span>
+        Tasks & Exams
+      </button>
+
+      <button class="nav-item" onclick="showPage('deadlinesPage', this)">
+        <span class="material-icons">event</span>
+        Deadlines
+      </button>
+    </aside>
+
+    <main class="main-content">
+
+      <!-- Dashboard -->
+      <section id="dashboardPage" class="page active-page">
+        <div class="header">
+          <div>
+            <p id="currentDate" class="date-text"></p>
+            <h1 id="greetingText">Good evening, Student</h1>
+          </div>
+
+          <button class="add-btn" onclick="openTasksPage()">
+            <span class="material-icons">add</span>
+            Add Task
+          </button>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="material-icons card-icon">assignment</span>
+            <h2 id="unfinishedTasksCount">0</h2>
+            <p>Unfinished Tasks</p>
+          </div>
+
+          <div class="summary-card">
+            <span class="material-icons card-icon">menu_book</span>
+            <h2 id="subjectsCount">0</h2>
+            <p>Current Subjects</p>
+          </div>
+
+          <div class="summary-card">
+            <span class="material-icons card-icon">notifications_active</span>
+            <h2 id="importantDeadlinesCount">0</h2>
+            <p>Important Deadlines</p>
+          </div>
+        </div>
+
+        <div class="dashboard-bottom">
+          <div>
+            <h2 class="section-heading">Priorities</h2>
+            <div id="prioritiesList" class="list"></div>
+          </div>
+
+          <div class="subjects-box">
+            <h2>Active Subjects</h2>
+            <div id="activeSubjectsList" class="subjects-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subjects -->
+      <section id="subjectsPage" class="page">
+        <h1>Subjects</h1>
+        <p class="subtitle">Add and manage your current subjects.</p>
+
+        <div class="form-row">
+          <input type="text" id="subjectCodeInput" placeholder="Subject code, e.g. BIS 351">
+          <input type="text" id="subjectNameInput" placeholder="Subject name">
+          <button onclick="addSubject()">Add Subject</button>
+        </div>
+
+        <div id="subjectsPageList" class="cards-grid"></div>
+      </section>
+
+      <!-- Tasks & Exams -->
+      <section id="tasksPage" class="page">
+        <h1>Tasks & Exams</h1>
+        <p class="subtitle">Manage your academic tasks and exams.</p>
+
+        <div class="task-form">
+          <input type="text" id="taskTitleInput" placeholder="Task or exam title">
+
+          <select id="taskSubjectInput">
+            <option value="">Select subject</option>
+          </select>
+
+          <select id="taskTypeInput">
+            <option value="Task">Task</option>
+            <option value="Exam">Exam</option>
+          </select>
+
+          <input type="date" id="taskDeadlineInput">
+
+          <button onclick="addTask()">Add</button>
+        </div>
+
+        <div class="filters">
+          <button onclick="renderTasks('all')">All</button>
+          <button onclick="renderTasks('Task')">Tasks</button>
+          <button onclick="renderTasks('Exam')">Exams</button>
+          <button onclick="renderTasks('done')">Completed</button>
+        </div>
+
+        <div id="tasksList" class="list"></div>
+      </section>
+
+      <!-- Deadlines -->
+      <section id="deadlinesPage" class="page">
+        <h1>Deadlines & Progress</h1>
+        <p class="subtitle">View upcoming deadlines and your progress.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h2 id="totalTasksProgress">0</h2>
+            <p>Total Tasks</p>
+          </div>
+
+          <div class="summary-card">
+            <h2 id="completedTasksProgress">0</h2>
+            <p>Completed</p>
+          </div>
+
+          <div class="summary-card">
+            <h2 id="pendingTasksProgress">0</h2>
+            <p>Pending</p>
+          </div>
+        </div>
+
+        <h2 class="section-heading">Upcoming Deadlines</h2>
+        <div id="deadlinesList" class="list"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
