@@ -39,6 +39,11 @@ function openTasksPage() {
   updateAll();
 }
 
+/* Logout */
+function doLogout() {
+  window.location.href = "login.html";
+}
+
 /* Greeting */
 function setGreeting() {
   const hour = new Date().getHours();
