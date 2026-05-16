@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Student Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="login-body">
+
+  <div class="login-wrapper">
+
+    <div class="login-card">
+
+      <div class="login-logo">
+        <span class="material-icons login-logo-icon">school</span>
+      </div>
+
+      <h1 class="login-title">Study Planner</h1>
+      <p class="login-subtitle">Sign in to your student account</p>
+
+      <div id="loginError" class="login-error" style="display:none;">
+        <span class="material-icons" style="font-size:18px;vertical-align:middle;">error_outline</span>
+        Invalid email or password.
+      </div>
+
+      <div class="login-form">
+
+        <div class="login-field">
+          <label>Email</label>
+          <div class="input-wrapper">
+            <span class="material-icons input-icon">email</span>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="student@iau.edu.sa"
+              onkeydown="if(event.key==='Enter') doLogin()"
+            />
+          </div>
+        </div>
+
+        <div class="login-field">
+          <label>Password</label>
+          <div class="input-wrapper">
+            <span class="material-icons input-icon">lock</span>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="••••••••"
+              onkeydown="if(event.key==='Enter') doLogin()"
+            />
+            <span class="material-icons toggle-pass" onclick="togglePassword()" id="toggleIcon">visibility_off</span>
+          </div>
+        </div>
+
+        <button class="login-btn" onclick="doLogin()">
+          Sign In
+          <span class="material-icons">arrow_forward</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function doLogin() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const errorBox = document.getElementById("loginError");
+
+      if (email === "student@iau.edu.sa" && password === "12345678") {
+        errorBox.style.display = "none";
+        // Redirect to main app
+        window.location.href = "index.html";
+      } else {
+        errorBox.style.display = "flex";
+        document.getElementById("loginPassword").value = "";
+      }
+    }
+
+    function togglePassword() {
+      const input = document.getElementById("loginPassword");
+      const icon = document.getElementById("toggleIcon");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "visibility";
+      } else {
+        input.type = "password";
+        icon.textContent = "visibility_off";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
 
